@@ -1,9 +1,11 @@
 <script lang="ts">
-  import Greet from './lib/Greet.svelte'
+  import Greet from './lib/Greet.svelte';
+  import ClockDisplay from './components/ClockDisplay.svelte';
 </script>
 
 <main class="container">
-  <h1>Welcome to Tauri!</h1>
+  <ClockDisplay />
+  <!-- <h1>Welcome to Tauri!</h1>
 
   <div class="row">
     <a href="https://vitejs.dev" target="_blank">
@@ -23,7 +25,7 @@
 
   <div class="row">
     <Greet />
-  </div>
+  </div> -->
 
 
 </main>
