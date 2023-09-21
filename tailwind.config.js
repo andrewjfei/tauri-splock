@@ -5,7 +5,11 @@ export default {
     "./src/**/*.{svelte,js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'orbitron': ['orbitron', 'sans-serif'],
+      },
+    },
   },
   plugins: [],
 }
