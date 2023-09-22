@@ -1,14 +1,32 @@
 <script lang="ts">
-    import BreakClock from './components/BreakClock.svelte';
+  import BreakClock from './components/BreakClock.svelte';
   import Button from './components/Button.svelte';
-  import ClockDisplay from './components/ClockTest.svelte';
+  import GameInterval from './components/GameInterval.svelte';
   import ShotClock from './components/ShotClock.svelte';
 </script>
 
-<main class="container">
+<main class="p-4">
   <!-- <ClockDisplay /> -->
-  <ShotClock />
-  <BreakClock />
+  <div class="grid grid-cols-10 gap-4">
+    <GameInterval class="col-span-3" />
+    
+  </div>
+  <div class="grid grid-cols-10 gap-4">
+    <ShotClock class="col-span-3" />
+    <div class="flex flex-col gap-y-4 col-span-4">
+      <Button text="Reset" />
+      <div class="flex gap-x-4">
+        <Button class="flex-1" text="- Min" />
+        <Button class="flex-1" text="+ Min" />
+      </div>
+      <div class="flex gap-x-4">
+        <Button class="flex-1" text="- Sec" />
+        <Button class="flex-1" text="+ Sec" />
+      </div>
+      <Button class="flex-grow" type="primary" text="Start" />
+    </div>
+    <BreakClock class="col-span-3" />
+  </div>
   <!-- <Button text="Reset"/> -->
   <!-- <h1>Welcome to Tauri!</h1>
 

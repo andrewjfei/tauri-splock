@@ -18,6 +18,6 @@
     }
 </script>
 
-<div class="px-5 py-3 inline-block tracking-wider font-semibold text-5xl {getTextColour()} rounded-md bg-neutral-900 {className}">
+<div class="px-5 py-3 inline-block tracking-wider font-semibold text-5xl text-center {getTextColour()} rounded-md bg-neutral-900 {className}">
     {clockTime}
 </div>

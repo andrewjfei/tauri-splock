@@ -2,6 +2,6 @@
     export let text: string = "Label";
 </script>
 
-<p class="font-black tracking-widest">
+<p class="font-black tracking-widest text-center">
     {text.toUpperCase()}
 </p>

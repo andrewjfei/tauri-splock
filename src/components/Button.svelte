@@ -1,9 +1,20 @@
 <script lang="ts">
     let className: string = "";
-	export { className as class };
-    export let text: string = "Button";
+    let type: string = "default";
+    let text: string = "Button";
+
+	export { className as class, type, text };
+
+    function getClass() {
+        switch (type) {
+            case "primary": 
+                return "text-neutral-200 bg-orange-600 hover:bg-orange-500";
+            default:
+                return "text-neutral-300 bg-neutral-700 hover:bg-neutral-600";
+        }
+    }
 </script>
 
-<button class="px-5 py-3 font-bold tracking-wider rounded-md bg-neutral-700 hover:bg-neutral-600 transition-all {className}">
+<button class="px-5 py-3 font-bold tracking-wider rounded-md {getClass()} transition-all {className}">
     {text.toUpperCase()}
 </button>
