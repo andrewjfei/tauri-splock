@@ -1,12 +1,14 @@
 <script lang="ts">
+    import BreakClock from './components/BreakClock.svelte';
   import Button from './components/Button.svelte';
-  import ClockDisplay from './components/ClockDisplay.svelte';
+  import ClockDisplay from './components/ClockTest.svelte';
   import ShotClock from './components/ShotClock.svelte';
 </script>
 
 <main class="container">
   <!-- <ClockDisplay /> -->
   <ShotClock />
+  <BreakClock />
   <!-- <Button text="Reset"/> -->
   <!-- <h1>Welcome to Tauri!</h1>
 
