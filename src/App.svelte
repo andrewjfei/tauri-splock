@@ -5,9 +5,9 @@
 </script>
 
 <main class="container">
-  <ClockDisplay />
+  <!-- <ClockDisplay /> -->
   <ShotClock />
-  <Button text="Reset"/>
+  <!-- <Button text="Reset"/> -->
   <!-- <h1>Welcome to Tauri!</h1>
 
   <div class="row">
