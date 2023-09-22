@@ -5,15 +5,12 @@
     import Spacer from "./Spacer.svelte";
 </script>
 
-<div class="flex flex-col w-60 p-5 rounded-xl bg-neutral-800">
+<div class="flex flex-col gap-y-4 w-60 p-5 rounded-xl bg-neutral-800">
     <Label text="Shot Clock" />
-    <Spacer />
     <ShotClockDisplay />
-    <Spacer size={2} />
-    <div class="flex">
+    <div class="flex gap-x-4">
         <Button class="flex-1" text="- Sec" />
         <Button class="flex-1" text="+ Sec" />
     </div>
-    <Spacer size={2} />
     <Button text="Reset" />
 </div>
