@@ -15,6 +15,6 @@
     }
 </script>
 
-<button class="px-5 py-3 font-bold tracking-wider rounded-md {getClass()} transition-all {className}">
+<button class="px-5 py-3 font-bold tracking-wider rounded-md {getClass()} transition-all select-none {className}">
     {text.toUpperCase()}
 </button>

@@ -2,6 +2,6 @@
     export let text: string = "Label";
 </script>
 
-<p class="font-black tracking-widest text-center text-neutral-200">
+<p class=" font-black tracking-widest text-center text-neutral-200 select-none hover:cursor-default">
     {text.toUpperCase()}
 </p>
