@@ -1,9 +1,9 @@
 <script lang="ts">
-  import BreakClock from './components/BreakClock.svelte';
-  import Button from './components/Button.svelte';
-  import GameClock from './components/GameClock.svelte';
-  import GameInterval from './components/GameInterval.svelte';
-  import ShotClock from './components/ShotClock.svelte';
+  import BreakClock from "./components/BreakClock.svelte";
+  import Button from "./components/Button.svelte";
+  import GameClock from "./components/GameClock.svelte";
+  import GameInterval from "./components/GameInterval.svelte";
+  import ShotClock from "./components/ShotClock.svelte";
 </script>
 
 <main class="h-screen w-full p-4 grid grid-rows-4 gap-y-4">

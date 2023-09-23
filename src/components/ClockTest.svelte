@@ -1,7 +1,7 @@
 <script lang="ts">
-let secondsRemaining : number = 5000;
+let secondsRemaining: number = 5000;
 
-let timer : any = null;
+let timer: number | undefined = undefined;
 
 function formatSeconds(seconds : number) {
     let minutes : number = Math.floor(seconds / 60);
@@ -21,7 +21,7 @@ function formatNumber(number: number) {
 
 function startTime() {
     // only create an interval if no timer is present
-    if (timer === null && secondsRemaining > 0) {
+    if (timer === undefined && secondsRemaining > 0) {
         timer = setInterval(() => {
             if (secondsRemaining > 0) {
                 secondsRemaining -= 1;
@@ -29,7 +29,7 @@ function startTime() {
             } else {
                 // stop executing interval
                 clearInterval(timer);
-                timer = null;
+                timer = undefined;
             }
 
         }, 1000);
@@ -38,7 +38,7 @@ function startTime() {
 
 function stopTime() {
     clearInterval(timer);
-    timer = null;
+    timer = undefined;
 }
 
 function resetTime() {

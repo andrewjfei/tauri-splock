@@ -3,7 +3,7 @@
 
     let className: string = "";
     let clockTime: number = 0; // seconds
-    let pattern: string = "ss"
+    let pattern: string = "ss";
     let colour: string = "primary";
 
 	export { className as class, clockTime, pattern, colour };
