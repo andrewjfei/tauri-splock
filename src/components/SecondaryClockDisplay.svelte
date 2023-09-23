@@ -1,5 +1,4 @@
 <script lang="ts">
-    import { formatNumber } from "../utils/ClockUtil";
     import ClockDisplay from "./ClockDisplay.svelte";
 
     let className: string = "";
@@ -9,6 +8,4 @@
 	export { className as class, clockTimeInSeconds, isSet };
 </script>
 
-<ClockDisplay class="{className}" clockTime={formatNumber(clockTimeInSeconds)} colour={isSet ? "primary" : "disabled"}>
-
-</ClockDisplay>
+<ClockDisplay class="{className}" clockTimeInSeconds={clockTimeInSeconds} colour={isSet ? "primary" : "disabled"} />

@@ -1,17 +1,18 @@
 <script lang="ts">
   import BreakClock from './components/BreakClock.svelte';
   import Button from './components/Button.svelte';
+    import GameClock from './components/GameClock.svelte';
   import GameInterval from './components/GameInterval.svelte';
   import ShotClock from './components/ShotClock.svelte';
 </script>
 
-<main class="p-4">
+<main class="p-4 h-screen w-full grid grid-rows-4 gap-y-4">
   <!-- <ClockDisplay /> -->
-  <div class="grid grid-cols-10 gap-4">
+  <div class="row-span-1 grid grid-cols-10 gap-x-4">
     <GameInterval class="col-span-3" />
-    
+    <GameClock class="col-span-4" />
   </div>
-  <div class="grid grid-cols-10 gap-4">
+  <div class="row-span-3 grid grid-cols-10 gap-x-4">
     <ShotClock class="col-span-3" />
     <div class="flex flex-col gap-y-4 col-span-4">
       <Button text="Reset" />
