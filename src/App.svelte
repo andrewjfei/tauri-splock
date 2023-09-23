@@ -1,7 +1,7 @@
 <script lang="ts">
   import BreakClock from './components/BreakClock.svelte';
   import Button from './components/Button.svelte';
-    import GameClock from './components/GameClock.svelte';
+  import GameClock from './components/GameClock.svelte';
   import GameInterval from './components/GameInterval.svelte';
   import ShotClock from './components/ShotClock.svelte';
 </script>
