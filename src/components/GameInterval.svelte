@@ -44,7 +44,7 @@ import Label from "./Label.svelte";
     }
 </script>
 
-<div class="flex flex-col gap-y-2 {className}">
+<div class="flex flex-col gap-y-2 justify-center {className}">
     <Label text={getGameIntervalText()} />
     <GameIntervalTracker currentInterval={currentInterval} totalIntervals={totalIntervals} />
 </div>

@@ -8,8 +8,10 @@
     export { className as class };
 </script>
 
-<div class="flex flex-col gap-y-4 p-5 rounded-xl bg-neutral-800 {className}">
-    <Label text="Break Clock" />
-    <SecondaryClockDisplay />
-    <Button class="flex-grow" text="Timeout" />
+<div class="grid grid-rows-4 gap-y-4 p-5 rounded-xl bg-neutral-800 {className}">
+    <div class="row-span-2 flex flex-col gap-y-4">
+        <Label text="Break Clock" />
+        <SecondaryClockDisplay class="flex-grow" />
+    </div>
+    <Button class="row-span-2" text="Timeout" />
 </div>

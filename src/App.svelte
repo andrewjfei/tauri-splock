@@ -7,24 +7,23 @@
 </script>
 
 <main class="p-4 h-screen w-full grid grid-rows-4 gap-y-4">
-  <!-- <ClockDisplay /> -->
   <div class="row-span-1 grid grid-cols-10 gap-x-4">
     <GameInterval class="col-span-3" />
     <GameClock class="col-span-4" />
   </div>
   <div class="row-span-3 grid grid-cols-10 gap-x-4">
     <ShotClock class="col-span-3" />
-    <div class="flex flex-col gap-y-4 col-span-4">
-      <Button text="Reset" />
-      <div class="flex gap-x-4">
+    <div class="col-span-4 grid grid-rows-5 gap-y-4">
+      <Button class="row-span-1" text="Reset" />
+      <div class="row-span-1 flex gap-x-4">
         <Button class="flex-1" text="- Min" />
         <Button class="flex-1" text="+ Min" />
       </div>
-      <div class="flex gap-x-4">
+      <div class="row-span-1 flex gap-x-4">
         <Button class="flex-1" text="- Sec" />
         <Button class="flex-1" text="+ Sec" />
       </div>
-      <Button class="flex-grow" type="primary" text="Start" />
+      <Button class="row-span-2" type="primary" text="Start" />
     </div>
     <BreakClock class="col-span-3" />
   </div>
