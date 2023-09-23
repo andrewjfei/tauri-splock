@@ -6,4 +6,4 @@
     export { className as class };
 </script>
 
-<PrimaryClockDisplay class="{className}" clockTimeInSeconds={720} />
+<PrimaryClockDisplay class="{className}" clockTime={720} />

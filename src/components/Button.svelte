@@ -8,7 +8,7 @@
 
 	export { className as class, type, size, text };
 
-    function getClass() {
+    function getButtonColour() {
         switch (type) {
             case "primary": 
                 return "text-neutral-200 bg-orange-600 hover:bg-orange-500";
@@ -18,6 +18,6 @@
     }
 </script>
 
-<button class="px-5 py-3 font-bold tracking-widest rounded-md {getTextSize(size)} {getClass()} transition-all select-none {className}">
+<button class="px-5 py-3 tracking-widest font-bold rounded-md transition-all select-none {getTextSize(size)} {getButtonColour()} {className}">
     {text.toUpperCase()}
 </button>

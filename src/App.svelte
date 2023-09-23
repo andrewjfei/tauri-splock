@@ -6,7 +6,7 @@
   import ShotClock from './components/ShotClock.svelte';
 </script>
 
-<main class="p-4 h-screen w-full grid grid-rows-4 gap-y-4">
+<main class="h-screen w-full p-4 grid grid-rows-4 gap-y-4">
   <div class="row-span-1 grid grid-cols-10 gap-x-4">
     <GameInterval class="col-span-3" />
     <GameClock class="col-span-4" />
@@ -49,6 +49,4 @@
   <div class="row">
     <Greet />
   </div> -->
-
-
 </main>

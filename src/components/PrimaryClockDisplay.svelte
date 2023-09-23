@@ -2,9 +2,9 @@
     import ClockDisplay from "./ClockDisplay.svelte";
 
     let className: string = "";
-    let clockTimeInSeconds: number = 0;
+    let clockTime: number = 0; // seconds
 
-	export { className as class, clockTimeInSeconds };
+	export { className as class, clockTime };
 </script>
 
-<ClockDisplay class="{className}" clockTimeInSeconds={clockTimeInSeconds} format="mm:ss" colour="default" />
+<ClockDisplay class="{className}" clockTime={clockTime} pattern="mm:ss" colour="default" />

@@ -2,10 +2,10 @@
     import ClockDisplay from "./ClockDisplay.svelte";
 
     let className: string = "";
-    let clockTimeInSeconds: number = 0;
+    let clockTime: number = 0; // seconds
     let isSet: boolean = false;
 
-	export { className as class, clockTimeInSeconds, isSet };
+	export { className as class, clockTime, isSet };
 </script>
 
-<ClockDisplay class="{className}" clockTimeInSeconds={clockTimeInSeconds} colour={isSet ? "primary" : "disabled"} />
+<ClockDisplay class="{className}" clockTime={clockTime} colour={isSet ? "primary" : "disabled"} />

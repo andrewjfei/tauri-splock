@@ -8,7 +8,7 @@
     export { className as class };
 </script>
 
-<div class="grid grid-rows-4 gap-y-4 p-5 rounded-xl bg-neutral-800 {className}">
+<div class="p-5 grid grid-rows-4 gap-y-4 rounded-xl bg-neutral-800 {className}">
     <div class="row-span-2 flex flex-col gap-y-4">
         <Label size="lg" text="Break Clock" />
         <SecondaryClockDisplay class="flex-grow" />

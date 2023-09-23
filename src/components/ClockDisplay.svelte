@@ -1,15 +1,15 @@
 <script lang="ts">
-    import { formatNumber, formatToMinutes } from "../utils/ClockUtil";
+    import { formatClockTime } from "../utils/ClockUtil";
 
     let className: string = "";
-    let clockTimeInSeconds: number = 0;
-    let format: string = ""
+    let clockTime: number = 0; // seconds
+    let pattern: string = "ss"
     let colour: string = "primary";
 
-	export { className as class, clockTimeInSeconds, format, colour};
+	export { className as class, clockTime, pattern, colour };
 
     function getFontWeight() {
-        switch (format) {
+        switch (pattern) {
             case "mm:ss":
                 return "font-regular";
             default:
@@ -27,20 +27,8 @@
                 return "text-neutral-200";
         }
     }
-
-    function getClockTime() {
-        switch (format) {
-            case "mm:ss":
-                return formatToMinutes(clockTimeInSeconds);
-            default:
-                return formatNumber(clockTimeInSeconds);
-        }
-
-        // todo: use this instead of switch statement when util class is ready
-        // formatSeconds(format, clockTimeInSeconds);
-    }
 </script>
 
-<div class="px-5 py-3 flex justify-center items-center tracking-wider {getFontWeight()} text-6xl lg:text-7xl xl:text-8xl 3xl:text-9xl {getTextColour()} rounded-md bg-neutral-900 select-none hover:cursor-default {className}">
-    {getClockTime()}
+<div class="px-5 py-3 flex justify-center items-center tracking-wider text-6xl lg:text-7xl xl:text-8xl 3xl:text-9xl rounded-md bg-neutral-900 select-none hover:cursor-default {getFontWeight()} {getTextColour()} {className}">
+    {formatClockTime(pattern, clockTime)}
 </div>
