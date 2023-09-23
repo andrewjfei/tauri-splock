@@ -9,4 +9,4 @@
     }
 </script>
 
-<div class="w-9 h-3 rounded-lg {getClass()} {className}" />
+<div class="w-9 lg:w-12 3xl:w-14 h-3 lg:h-4 3xl:h-5 rounded-lg 3xl:rounded-xl {getClass()} {className}" />

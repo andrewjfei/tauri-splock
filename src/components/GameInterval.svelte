@@ -3,7 +3,7 @@
 import Label from "./Label.svelte";
 
     let className: string = "";
-    let currentInterval: number = 1;
+    let currentInterval: number = 3;
     let totalIntervals: number = 4;
 
 	export { className as class, type, text };
@@ -34,7 +34,7 @@ import Label from "./Label.svelte";
                 b = "Half";
                 break;
             case 4:
-                b = "Quarter";
+                b = "Qtr";
                 break;
             default:
                 b = "Game";
@@ -44,7 +44,7 @@ import Label from "./Label.svelte";
     }
 </script>
 
-<div class="flex flex-col gap-y-2 justify-center {className}">
-    <Label text={getGameIntervalText()} />
+<div class="flex flex-col gap-y-4 xl:gap-y-5 3xl:gap-y-6 justify-center {className}">
+    <Label size="2xl" text={getGameIntervalText()} />
     <GameIntervalTracker currentInterval={currentInterval} totalIntervals={totalIntervals} />
 </div>

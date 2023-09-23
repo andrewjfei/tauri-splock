@@ -41,6 +41,6 @@
     }
 </script>
 
-<div class="px-5 py-3 flex justify-center items-center tracking-wider {getFontWeight()} text-5xl {getTextColour()} rounded-md bg-neutral-900 select-none hover:cursor-default {className}">
+<div class="px-5 py-3 flex justify-center items-center tracking-wider {getFontWeight()} text-6xl lg:text-7xl xl:text-8xl 3xl:text-9xl {getTextColour()} rounded-md bg-neutral-900 select-none hover:cursor-default {className}">
     {getClockTime()}
 </div>

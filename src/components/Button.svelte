@@ -1,9 +1,12 @@
 <script lang="ts">
+    import { getTextSize } from "../utils/TailwindCSSUtil";
+
     let className: string = "";
     let type: string = "default";
+    let size: string = "md";
     let text: string = "Button";
 
-	export { className as class, type, text };
+	export { className as class, type, size, text };
 
     function getClass() {
         switch (type) {
@@ -15,6 +18,6 @@
     }
 </script>
 
-<button class="px-5 py-3 font-bold tracking-wider rounded-md {getClass()} transition-all select-none {className}">
+<button class="px-5 py-3 font-bold tracking-widest rounded-md {getTextSize(size)} {getClass()} transition-all select-none {className}">
     {text.toUpperCase()}
 </button>

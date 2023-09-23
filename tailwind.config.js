@@ -9,6 +9,9 @@ export default {
       fontFamily: {
         'orbitron': ['orbitron', 'sans-serif'],
       },
+      screens: {
+        '3xl': '1800px', // => @media (min-width: 1600px) { ... }
+      },
     },
   },
   plugins: [],

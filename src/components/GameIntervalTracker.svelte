@@ -8,7 +8,7 @@
 	export { className as class, currentInterval, totalIntervals };
 </script>
 
-<div class="flex justify-center gap-x-4 {className}">
+<div class="flex justify-center gap-x-4 xl:gap-x-5 3xl:gap-x-6 {className}">
     {#each Array(totalIntervals) as _, i}
         <Bullet active={i < currentInterval} />
     {/each}

@@ -14,16 +14,16 @@
   <div class="row-span-3 grid grid-cols-10 gap-x-4">
     <ShotClock class="col-span-3" />
     <div class="col-span-4 grid grid-rows-5 gap-y-4">
-      <Button class="row-span-1" text="Reset" />
+      <Button class="row-span-1" size="lg" text="Reset" />
       <div class="row-span-1 flex gap-x-4">
-        <Button class="flex-1" text="- Min" />
-        <Button class="flex-1" text="+ Min" />
+        <Button class="flex-1" size="lg" text="- Min" />
+        <Button class="flex-1" size="lg" text="+ Min" />
       </div>
       <div class="row-span-1 flex gap-x-4">
-        <Button class="flex-1" text="- Sec" />
-        <Button class="flex-1" text="+ Sec" />
+        <Button class="flex-1" size="lg" text="- Sec" />
+        <Button class="flex-1" size="lg" text="+ Sec" />
       </div>
-      <Button class="row-span-2" type="primary" text="Start" />
+      <Button class="row-span-2" type="primary" size="lg" text="Start" />
     </div>
     <BreakClock class="col-span-3" />
   </div>
