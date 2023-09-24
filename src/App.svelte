@@ -32,7 +32,7 @@
                 />
                 <Button 
                     class="flex-1" 
-                    type={$isGameClockRunning || $gameClockTime <= 0 ? "disabled" : "default"} 
+                    type={$isGameClockRunning || $gameClockTime >= DEFAULT_GAME_INTERVAL_CLOCK_TIME ? "disabled" : "default"} 
                     size="lg" 
                     text="+ Min" 
                     on:click={addMinuteToGameClock}
