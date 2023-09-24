@@ -1,16 +1,20 @@
-import { get, writable } from "svelte/store";
+import { get, writable, type Writable } from "svelte/store";
 
 const DEFAULT_GAME_INTERVAL_CLOCK_TIME: number = 720000;
 const DEFAULT_SHOT_CLOCK_TIME: number = 24000;
+const DEFAULT_TIMEOUT_CLOCK_TIME: number = 30000;
 
 // all clock time values are in milliseconds
-const gameClockTime = writable(DEFAULT_GAME_INTERVAL_CLOCK_TIME);
-const shotClockTime = writable(DEFAULT_SHOT_CLOCK_TIME);
-const breakClockTime = writable(null);
+const gameClockTime: Writable<number> = writable(DEFAULT_GAME_INTERVAL_CLOCK_TIME);
+const shotClockTime: Writable<number> = writable(DEFAULT_SHOT_CLOCK_TIME);
+const breakClockTime: Writable<number | null> = writable(null);
 
-const isClockRunning = writable(false);
+const isGameClockRunning: Writable<boolean> = writable(false);
+const isBreakClockRunning: Writable<boolean> = writable(false);
+
 let gameClockTimeInterval: number;
 let shotClockTimeInterval: number;
+let breakClockTimeInterval: number;
 
 function startGameClockTime() {
     gameClockTimeInterval = setInterval(() => {
@@ -34,10 +38,28 @@ function startShotClockTime() {
     }, 10);
 }
 
+function startBreakClockTime() {
+    breakClockTimeInterval = setInterval(() => {
+        breakClockTime.update((clockTime) => clockTime! - 10);
+
+        if (get(breakClockTime)! <= 0) {
+            stopBreakClockTime();
+            breakClockTime.set(null);
+        }
+    }, 10);
+}
+
+function startTimeoutClockTime() {
+    stopClockTime();
+    breakClockTime.set(DEFAULT_TIMEOUT_CLOCK_TIME);
+    startBreakClockTime();
+    isBreakClockRunning.set(true);
+}
+
 function startClockTime() {
     startGameClockTime();
     startShotClockTime();
-    isClockRunning.set(true);
+    isGameClockRunning.set(true);
 }
 
 function stopGameClockTime() {
@@ -48,10 +70,15 @@ function stopShotClockTime() {
     clearInterval(shotClockTimeInterval);
 }
 
+function stopBreakClockTime() {
+    clearInterval(breakClockTimeInterval);
+    isBreakClockRunning.set(false);
+}
+
 function stopClockTime() {
     stopGameClockTime();
     stopShotClockTime();
-    isClockRunning.set(false);
+    isGameClockRunning.set(false);
 }
 
 function resetGameClock() {
@@ -63,7 +90,7 @@ function resetShotClock() {
     stopShotClockTime();
     shotClockTime.set(DEFAULT_SHOT_CLOCK_TIME);
 
-    if (get(isClockRunning)) {
+    if (get(isGameClockRunning)) {
         startShotClockTime();
     }
 }
@@ -98,4 +125,4 @@ function subtractSecondFromShotClock() {
     shotClockTime.update((clockTime) => clockTime - 1000 < 0 ? 0 : clockTime - 1000);
 }
 
-export { DEFAULT_GAME_INTERVAL_CLOCK_TIME, DEFAULT_SHOT_CLOCK_TIME, gameClockTime, shotClockTime, breakClockTime, isClockRunning, startClockTime, stopClockTime, resetGameClock, resetShotClock, addMinuteToGameClock, subtractMinuteFromGameClock, addSecondToGameClock, subtractSecondFromGameClock, addSecondToShotClock, subtractSecondFromShotClock };
+export { DEFAULT_GAME_INTERVAL_CLOCK_TIME, DEFAULT_SHOT_CLOCK_TIME, gameClockTime, shotClockTime, breakClockTime, isGameClockRunning, isBreakClockRunning, startClockTime, startTimeoutClockTime, stopClockTime, resetGameClock, resetShotClock, addMinuteToGameClock, subtractMinuteFromGameClock, addSecondToGameClock, subtractSecondFromGameClock, addSecondToShotClock, subtractSecondFromShotClock };

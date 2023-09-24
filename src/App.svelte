@@ -4,7 +4,7 @@
     import GameClock from "./components/GameClock.svelte";
     import GameInterval from "./components/GameInterval.svelte";
     import ShotClock from "./components/ShotClock.svelte";
-    import { DEFAULT_GAME_INTERVAL_CLOCK_TIME, addMinuteToGameClock, addSecondToGameClock, gameClockTime, isClockRunning, resetGameClock, startClockTime, stopClockTime, subtractMinuteFromGameClock, subtractSecondFromGameClock } from "./stores/ClockStore";
+    import { DEFAULT_GAME_INTERVAL_CLOCK_TIME, addMinuteToGameClock, addSecondToGameClock, gameClockTime, isBreakClockRunning, isGameClockRunning, resetGameClock, startClockTime, stopClockTime, subtractMinuteFromGameClock, subtractSecondFromGameClock } from "./stores/ClockStore";
 </script>
 
 <main class="h-screen w-full p-4 grid grid-rows-4 gap-y-4">
@@ -17,7 +17,7 @@
         <div class="col-span-4 grid grid-rows-5 gap-y-4">
             <Button 
                 class="row-span-1" 
-                type={$isClockRunning ? "disabled" : "default"} 
+                type={$isGameClockRunning ? "disabled" : "default"} 
                 size="lg"
                 text="Reset"
                 on:click={resetGameClock}
@@ -25,14 +25,14 @@
             <div class="row-span-1 flex gap-x-4">
                 <Button 
                     class="flex-1" 
-                    type={$isClockRunning || $gameClockTime <= 0 ? "disabled" : "default"} 
+                    type={$isGameClockRunning || $gameClockTime <= 0 ? "disabled" : "default"} 
                     size="lg" 
                     text="- Min" 
                     on:click={subtractMinuteFromGameClock}
                 />
                 <Button 
                     class="flex-1" 
-                    type={$isClockRunning || $gameClockTime >= DEFAULT_GAME_INTERVAL_CLOCK_TIME ? "disabled" : "default"} 
+                    type={$isGameClockRunning || $gameClockTime <= 0 ? "disabled" : "default"} 
                     size="lg" 
                     text="+ Min" 
                     on:click={addMinuteToGameClock}
@@ -41,14 +41,14 @@
             <div class="row-span-1 flex gap-x-4">
                 <Button 
                     class="flex-1"
-                    type={$isClockRunning || $gameClockTime <= 0 ? "disabled" : "default"} 
+                    type={$isGameClockRunning || $gameClockTime <= 0 ? "disabled" : "default"} 
                     size="lg" 
                     text="- Sec" 
                     on:click={subtractSecondFromGameClock}
                 />
                 <Button 
                     class="flex-1" 
-                    type={$isClockRunning || $gameClockTime >= DEFAULT_GAME_INTERVAL_CLOCK_TIME ? "disabled" : "default"} 
+                    type={$isGameClockRunning || $gameClockTime >= DEFAULT_GAME_INTERVAL_CLOCK_TIME ? "disabled" : "default"} 
                     size="lg"
                     text="+ Sec" 
                     on:click={addSecondToGameClock}
@@ -56,10 +56,10 @@
             </div>
             <Button 
                 class="row-span-2" 
-                type={$gameClockTime <= 0 ? "disabled" : "primary"} 
+                type={$gameClockTime <= 0 || $isBreakClockRunning ? "disabled" : "primary"} 
                 size="lg" 
-                text={$isClockRunning ? "Stop": "Start"} 
-                on:click={$isClockRunning ? stopClockTime : startClockTime}
+                text={$isGameClockRunning ? "Stop": "Start"} 
+                on:click={$isGameClockRunning ? stopClockTime : startClockTime}
             />
         </div>
         <BreakClock class="col-span-3" />

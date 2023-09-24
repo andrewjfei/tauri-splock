@@ -26,8 +26,6 @@ function toMinutesAndSeconds(milliseconds: number) {
 }
 
 function toSeconds(milliseconds: number) {
-     // 990
-    // 1000
     const seconds: number = Math.ceil(milliseconds / 1000);
     return prefixWithZeros(seconds, NUM_OF_SECONDS_IN_MINUTE, 2);
 }
