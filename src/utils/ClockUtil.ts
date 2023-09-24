@@ -1,21 +1,23 @@
 const NUM_OF_SECONDS_IN_MINUTE: number = 60;
 const NUM_OF_MINUTES_IN_HOUR: number = 60;
 
-function formatClockTime(pattern: string, seconds: number) {
+function formatClockTime(pattern: string, milliseconds: number) {
     let clockTime: string;
 
     switch (pattern) {
         case "mm:ss":
-            clockTime = toMinutesAndSeconds(seconds);
+            clockTime = toMinutesAndSeconds(milliseconds);
             break;
         default:
-            clockTime = toSeconds(seconds);
+            clockTime = toSeconds(milliseconds);
     }
 
     return clockTime;
 }
 
-function toMinutesAndSeconds(seconds: number) {
+function toMinutesAndSeconds(milliseconds: number) {
+    let seconds: number = Math.ceil(milliseconds / 1000);
+    
     const minutes: number = Math.floor(seconds / 60);
 
     seconds %= 60;
@@ -23,7 +25,10 @@ function toMinutesAndSeconds(seconds: number) {
     return `${prefixWithZeros(minutes, NUM_OF_MINUTES_IN_HOUR, 2)}:${prefixWithZeros(seconds, NUM_OF_SECONDS_IN_MINUTE, 2)}`;
 }
 
-function toSeconds(seconds: number) {
+function toSeconds(milliseconds: number) {
+     // 990
+    // 1000
+    const seconds: number = Math.ceil(milliseconds / 1000);
     return prefixWithZeros(seconds, NUM_OF_SECONDS_IN_MINUTE, 2);
 }
 

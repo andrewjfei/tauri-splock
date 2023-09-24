@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { isClockRunning, resetShotClock, shotClockTime } from "../stores/ClockStore";
+    import { DEFAULT_SHOT_CLOCK_TIME, addSecondToShotClock, isClockRunning, resetShotClock, shotClockTime, subtractSecondFromShotClock } from "../stores/ClockStore";
     import Button from "./Button.svelte";
     import Label from "./Label.svelte";
     import SecondaryClockDisplay from "./SecondaryClockDisplay.svelte";
@@ -17,15 +17,17 @@
     <div class="row-span-1 flex gap-x-4">
         <Button 
             class="flex-1"
-            type={$isClockRunning ? "disabled" : "default"} 
+            type={$isClockRunning || $shotClockTime <= 0 ? "disabled" : "default"} 
             size="lg" 
             text="- Sec" 
+            on:click={subtractSecondFromShotClock}
         />
         <Button 
             class="flex-1"
-            type={$isClockRunning ? "disabled" : "default"}  
+            type={$isClockRunning || $shotClockTime >= DEFAULT_SHOT_CLOCK_TIME ? "disabled" : "default"}  
             size="lg" 
             text="+ Sec"
+            on:click={addSecondToShotClock}
         />
     </div>
     <Button class="row-span-1" size="lg" text="Reset" on:click={resetShotClock} />

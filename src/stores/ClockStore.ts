@@ -1,9 +1,9 @@
-import { derived, get, writable } from "svelte/store";
+import { get, writable } from "svelte/store";
 
-const DEFAULT_GAME_INTERVAL_CLOCK_TIME: number = 720;
-const DEFAULT_SHOT_CLOCK_TIME: number = 5;
+const DEFAULT_GAME_INTERVAL_CLOCK_TIME: number = 720000;
+const DEFAULT_SHOT_CLOCK_TIME: number = 24000;
 
-// all clock time values are in seconds
+// all clock time values are in milliseconds
 const gameClockTime = writable(DEFAULT_GAME_INTERVAL_CLOCK_TIME);
 const shotClockTime = writable(DEFAULT_SHOT_CLOCK_TIME);
 const breakClockTime = writable(null);
@@ -14,19 +14,24 @@ let shotClockTimeInterval: number;
 
 function startGameClockTime() {
     gameClockTimeInterval = setInterval(() => {
-        gameClockTime.update((clockTime) => clockTime - 1);
-    }, 1000);
+        gameClockTime.update((clockTime) => clockTime - 10);
+
+        if (get(gameClockTime) <= 0) {
+            stopClockTime();
+            resetShotClock();
+        }
+    }, 10);
 }
 
 function startShotClockTime() {
     shotClockTimeInterval = setInterval(() => {
-        shotClockTime.update((clockTime) => clockTime - 1);
+        shotClockTime.update((clockTime) => clockTime - 10);
 
-        if (get(shotClockTime) < 0) {
-            // todo: execute shot clock alarm
+        if (get(shotClockTime) <= 0) {
+            stopClockTime();
             resetShotClock();
         }
-    }, 1000);
+    }, 10);
 }
 
 function startClockTime() {
@@ -63,4 +68,34 @@ function resetShotClock() {
     }
 }
 
-export { gameClockTime, shotClockTime, breakClockTime, isClockRunning, startClockTime, stopClockTime, resetGameClock, resetShotClock };
+function addMinuteToGameClock() {
+    // if the game clock time is within one second of the maximum clock time then set it to the maximum clock time
+    gameClockTime.update((clockTime) => clockTime + 60000 > DEFAULT_GAME_INTERVAL_CLOCK_TIME - 1000 ? DEFAULT_GAME_INTERVAL_CLOCK_TIME : clockTime + 60000);
+}
+
+function subtractMinuteFromGameClock() {
+    // if the game clock time is less than 0 then set it to 0
+    gameClockTime.update((clockTime) => clockTime - 60000 < 0 ? 0 : clockTime - 60000);
+}
+
+function addSecondToGameClock() {
+    // if the game clock time is within one second of the maximum clock time then set it to the maximum clock time
+    gameClockTime.update((clockTime) => clockTime + 1000 > DEFAULT_GAME_INTERVAL_CLOCK_TIME - 1000 ? DEFAULT_GAME_INTERVAL_CLOCK_TIME : clockTime + 1000);
+}
+
+function subtractSecondFromGameClock() {
+    // if the game clock time is less than 0 then set it to 0
+    gameClockTime.update((clockTime) => clockTime - 1000 < 0 ? 0 : clockTime - 1000);
+}
+
+function addSecondToShotClock() {
+    // if the shot clock time is within one second of the maximum clock time then set it to the maximum clock time
+    shotClockTime.update((clockTime) => clockTime + 1000 > DEFAULT_SHOT_CLOCK_TIME - 1000 ? DEFAULT_SHOT_CLOCK_TIME : clockTime + 1000);
+}
+
+function subtractSecondFromShotClock() {
+    // if the shot clock time is less than 0 then set it to 0
+    shotClockTime.update((clockTime) => clockTime - 1000 < 0 ? 0 : clockTime - 1000);
+}
+
+export { DEFAULT_GAME_INTERVAL_CLOCK_TIME, DEFAULT_SHOT_CLOCK_TIME, gameClockTime, shotClockTime, breakClockTime, isClockRunning, startClockTime, stopClockTime, resetGameClock, resetShotClock, addMinuteToGameClock, subtractMinuteFromGameClock, addSecondToGameClock, subtractSecondFromGameClock, addSecondToShotClock, subtractSecondFromShotClock };
