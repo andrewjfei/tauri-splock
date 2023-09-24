@@ -6,7 +6,7 @@
     let currentInterval: number = 1;
     let totalIntervals: number = 4;
 
-	export { className as class, currentInterval, totalIntervals };
+    export { className as class, currentInterval, totalIntervals };
 
     function getGameIntervalText() {
         let nth: string | null;

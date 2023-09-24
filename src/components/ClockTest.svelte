@@ -1,82 +1,82 @@
 <script lang="ts">
-let secondsRemaining: number = 5000;
+    let secondsRemaining: number = 5000;
 
-let timer: number | undefined = undefined;
+    let timer: number | undefined = undefined;
 
-function formatSeconds(seconds : number) {
-    let minutes : number = Math.floor(seconds / 60);
+    function formatSeconds(seconds : number) {
+        let minutes : number = Math.floor(seconds / 60);
 
-    seconds %= 60;
+        seconds %= 60;
 
-    return `${formatNumber(minutes)}:${formatNumber(seconds)}`;
-}
-
-function formatNumber(number: number) {
-    if (number < 10) {
-        return "0" + number;
+        return `${formatNumber(minutes)}:${formatNumber(seconds)}`;
     }
 
-    return number.toString();
-}
+    function formatNumber(number: number) {
+        if (number < 10) {
+            return "0" + number;
+        }
 
-function startTime() {
-    // only create an interval if no timer is present
-    if (timer === undefined && secondsRemaining > 0) {
-        timer = setInterval(() => {
-            if (secondsRemaining > 0) {
-                secondsRemaining -= 1;
-                console.log(secondsRemaining);
-            } else {
-                // stop executing interval
-                clearInterval(timer);
-                timer = undefined;
-            }
-
-        }, 1000);
+        return number.toString();
     }
-}
 
-function stopTime() {
-    clearInterval(timer);
-    timer = undefined;
-}
+    function startTime() {
+        // only create an interval if no timer is present
+        if (timer === undefined && secondsRemaining > 0) {
+            timer = setInterval(() => {
+                if (secondsRemaining > 0) {
+                    secondsRemaining -= 1;
+                    console.log(secondsRemaining);
+                } else {
+                    // stop executing interval
+                    clearInterval(timer);
+                    timer = undefined;
+                }
 
-function resetTime() {
-    secondsRemaining = 10;
-}
+            }, 1000);
+        }
+    }
 
-function validateTime(seconds : number) {
-    // ensure clock cannot be negative
-    if (seconds < 0) {
-        return 0;
-    } 
+    function stopTime() {
+        clearInterval(timer);
+        timer = undefined;
+    }
+
+    function resetTime() {
+        secondsRemaining = 10;
+    }
+
+    function validateTime(seconds : number) {
+        // ensure clock cannot be negative
+        if (seconds < 0) {
+            return 0;
+        } 
     
-    if (seconds > 5999) {
-        return 5999; // set timer countdown to 99:59
+        if (seconds > 5999) {
+            return 5999; // set timer countdown to 99:59
+        }
+
+        return seconds;
     }
 
-    return seconds;
-}
+    function addSecond() {
+        let tmpSeconds = secondsRemaining + 1;
+        secondsRemaining = validateTime(tmpSeconds);
+    }
 
-function addSecond() {
-    let tmpSeconds = secondsRemaining + 1;
-    secondsRemaining = validateTime(tmpSeconds);
-}
+    function addMinute() {
+        let tmpSeconds = secondsRemaining + 60;
+        secondsRemaining = validateTime(tmpSeconds);
+    }
 
-function addMinute() {
-    let tmpSeconds = secondsRemaining + 60;
-    secondsRemaining = validateTime(tmpSeconds);
-}
+    function subtractSecond() {
+        let tmpSeconds = secondsRemaining - 1;
+        secondsRemaining = validateTime(tmpSeconds);
+    }
 
-function subtractSecond() {
-    let tmpSeconds = secondsRemaining - 1;
-    secondsRemaining = validateTime(tmpSeconds);
-}
-
-function subtractMinute() {
-    let tmpSeconds = secondsRemaining - 60;
-    secondsRemaining = validateTime(tmpSeconds);
-}
+    function subtractMinute() {
+        let tmpSeconds = secondsRemaining - 60;
+        secondsRemaining = validateTime(tmpSeconds);
+    }
 </script>
 
 <div>

@@ -4,7 +4,7 @@
     let className: string = "";
     let clockTime: number = 0; // seconds
 
-	export { className as class, clockTime };
+    export { className as class, clockTime };
 </script>
 
 <ClockDisplay class="{className}" clockTime={clockTime} pattern="mm:ss" colour="default" />

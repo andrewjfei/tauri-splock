@@ -2,7 +2,7 @@
     let className: string = "";
     let active: boolean = false;
 
-	export { className as class, active };
+    export { className as class, active };
 
     function getBackgrounColour() {
         return active ? "bg-orange-500" : "bg-neutral-500";

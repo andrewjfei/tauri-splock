@@ -5,7 +5,7 @@
     let currentInterval: number = 1;
     let totalIntervals: number = 4;
 
-	export { className as class, currentInterval, totalIntervals };
+    export { className as class, currentInterval, totalIntervals };
 </script>
 
 <div class="flex justify-center gap-x-4 xl:gap-x-5 3xl:gap-x-6 {className}">

@@ -1,6 +1,5 @@
 function getTextSize(size: string) {
     let classNames: string;
-
     switch (size) {
         case "lg":
             classNames = "text-lg lg:text-xl xl:text-2xl 3xl:text-3xl";

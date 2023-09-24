@@ -6,7 +6,7 @@
     let pattern: string = "ss";
     let colour: string = "primary";
 
-	export { className as class, clockTime, pattern, colour };
+    export { className as class, clockTime, pattern, colour };
 
     function getFontWeight() {
         switch (pattern) {

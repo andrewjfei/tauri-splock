@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { isClockRunning, resetShotClock, shotClockTime } from "../stores/ClockStore";
     import Button from "./Button.svelte";
     import Label from "./Label.svelte";
     import SecondaryClockDisplay from "./SecondaryClockDisplay.svelte";
@@ -11,11 +12,21 @@
 <div class="p-5 grid grid-rows-4 gap-y-4 rounded-xl bg-neutral-800 {className}">
     <div class="row-span-2 flex flex-col gap-y-4">
         <Label size="lg" text="Shot Clock" />
-        <SecondaryClockDisplay class="flex-grow" clockTime={24} isSet={true} />
+        <SecondaryClockDisplay class="flex-grow" clockTime={$shotClockTime} isSet={true} />
     </div>
     <div class="row-span-1 flex gap-x-4">
-        <Button class="flex-1" size="lg" text="- Sec" />
-        <Button class="flex-1" size="lg" text="+ Sec" />
+        <Button 
+            class="flex-1"
+            type={$isClockRunning ? "disabled" : "default"} 
+            size="lg" 
+            text="- Sec" 
+        />
+        <Button 
+            class="flex-1"
+            type={$isClockRunning ? "disabled" : "default"}  
+            size="lg" 
+            text="+ Sec"
+        />
     </div>
-    <Button class="row-span-1" size="lg" text="Reset" />
+    <Button class="row-span-1" size="lg" text="Reset" on:click={resetShotClock} />
 </div>

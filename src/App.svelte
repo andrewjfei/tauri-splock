@@ -1,34 +1,67 @@
 <script lang="ts">
-  import BreakClock from "./components/BreakClock.svelte";
-  import Button from "./components/Button.svelte";
-  import GameClock from "./components/GameClock.svelte";
-  import GameInterval from "./components/GameInterval.svelte";
-  import ShotClock from "./components/ShotClock.svelte";
+    import BreakClock from "./components/BreakClock.svelte";
+    import Button from "./components/Button.svelte";
+    import GameClock from "./components/GameClock.svelte";
+    import GameInterval from "./components/GameInterval.svelte";
+    import ShotClock from "./components/ShotClock.svelte";
+    import { isClockRunning, resetGameClock, startClockTime, stopClockTime } from "./stores/ClockStore";
 </script>
 
 <main class="h-screen w-full p-4 grid grid-rows-4 gap-y-4">
-  <div class="row-span-1 grid grid-cols-10 gap-x-4">
-    <GameInterval class="col-span-3" />
-    <GameClock class="col-span-4" />
-  </div>
-  <div class="row-span-3 grid grid-cols-10 gap-x-4">
-    <ShotClock class="col-span-3" />
-    <div class="col-span-4 grid grid-rows-5 gap-y-4">
-      <Button class="row-span-1" size="lg" text="Reset" />
-      <div class="row-span-1 flex gap-x-4">
-        <Button class="flex-1" size="lg" text="- Min" />
-        <Button class="flex-1" size="lg" text="+ Min" />
-      </div>
-      <div class="row-span-1 flex gap-x-4">
-        <Button class="flex-1" size="lg" text="- Sec" />
-        <Button class="flex-1" size="lg" text="+ Sec" />
-      </div>
-      <Button class="row-span-2" type="primary" size="lg" text="Start" />
+    <div class="row-span-1 grid grid-cols-10 gap-x-4">
+        <GameInterval class="col-span-3" />
+        <GameClock class="col-span-4" />
     </div>
-    <BreakClock class="col-span-3" />
-  </div>
-  <!-- <Button text="Reset"/> -->
-  <!-- <h1>Welcome to Tauri!</h1>
+    <div class="row-span-3 grid grid-cols-10 gap-x-4">
+        <ShotClock class="col-span-3" />
+        <div class="col-span-4 grid grid-rows-5 gap-y-4">
+            <Button 
+                class="row-span-1" 
+                type={$isClockRunning ? "disabled" : "default"} 
+                size="lg"
+                text="Reset"
+                on:click={resetGameClock}
+            />
+            <div class="row-span-1 flex gap-x-4">
+                <Button 
+                    class="flex-1" 
+                    type={$isClockRunning ? "disabled" : "default"} 
+                    size="lg" 
+                    text="- Min" 
+                />
+                <Button 
+                    class="flex-1" 
+                    type={$isClockRunning ? "disabled" : "default"} 
+                    size="lg" 
+                    text="+ Min" 
+                />
+            </div>
+            <div class="row-span-1 flex gap-x-4">
+                <Button 
+                    class="flex-1"
+                    type={$isClockRunning ? "disabled" : "default"} 
+                    size="lg" 
+                    text="- Sec" 
+                />
+                <Button 
+                    class="flex-1" 
+                    type={$isClockRunning ? "disabled" : "default"} 
+                    size="lg"
+                    text="+ Sec" 
+                />
+            </div>
+            <Button 
+                class="row-span-2" 
+                type="primary" 
+                size="lg" 
+                text={$isClockRunning ? "Stop": "Start"} 
+                on:click={$isClockRunning ? stopClockTime : startClockTime}
+            />
+        </div>
+        <BreakClock class="col-span-3" />
+    </div>
+    <!-- <Button text="Reset"/> -->
+    <!-- <h1>Welcome to Tauri!</h1>
 
   <div class="row">
     <a href="https://vitejs.dev" target="_blank">
