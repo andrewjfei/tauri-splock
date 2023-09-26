@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { breakClockTime, isBreakClockRunning, startTimeoutClockTime } from "../stores/ClockStore";
+    import { breakClockTime, isBreakClockRunning, isGameIntervalBuzzerOn, startTimeoutClockTime } from "../stores/ClockStore";
     import Button from "./Button.svelte";
     import Label from "./Label.svelte";
     import SecondaryClockDisplay from "./SecondaryClockDisplay.svelte";
@@ -16,7 +16,7 @@
     </div>
     <Button 
         class="row-span-2" 
-        type={$isBreakClockRunning ? "disabled" : "default"} 
+        type={$isBreakClockRunning || $isGameIntervalBuzzerOn ? "disabled" : "default"} 
         size="lg" text="Timeout" 
         on:click={startTimeoutClockTime} 
     />

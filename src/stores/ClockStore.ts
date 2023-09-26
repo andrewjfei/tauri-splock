@@ -4,6 +4,9 @@ const DEFAULT_GAME_INTERVAL_CLOCK_TIME: number = 720000;
 const DEFAULT_SHOT_CLOCK_TIME: number = 24000;
 const DEFAULT_TIMEOUT_CLOCK_TIME: number = 30000;
 
+const currentInterval: Writable<number> = writable(1);
+const totalIntervals: Writable<number> = writable(2);
+
 // all clock time values are in milliseconds
 const gameClockTime: Writable<number> = writable(DEFAULT_GAME_INTERVAL_CLOCK_TIME);
 const shotClockTime: Writable<number> = writable(DEFAULT_SHOT_CLOCK_TIME);
@@ -12,9 +15,17 @@ const breakClockTime: Writable<number | null> = writable(null);
 const isGameClockRunning: Writable<boolean> = writable(false);
 const isBreakClockRunning: Writable<boolean> = writable(false);
 
+const isGameIntervalBuzzerOn: Writable<boolean> = writable(false);
+
 let gameClockTimeInterval: number;
 let shotClockTimeInterval: number;
 let breakClockTimeInterval: number;
+
+function incrementGameInterval() {
+    if (get(currentInterval) < get(totalIntervals)) {
+        currentInterval.update((interval) => interval + 1);
+    }
+}
 
 function startGameClockTime() {
     gameClockTimeInterval = setInterval(() => {
@@ -22,7 +33,17 @@ function startGameClockTime() {
 
         if (get(gameClockTime) <= 0) {
             stopClockTime();
-            resetShotClock();
+
+            // todo: play shot game interval end buzzer
+            isGameIntervalBuzzerOn.set(true);
+
+            // delay update of game interval and game clock time visuals while buzzer sounds
+            setTimeout(() => {
+                incrementGameInterval();
+                resetGameClock();
+                resetShotClock();
+                isGameIntervalBuzzerOn.set(false);
+            }, 1500);
         }
     }, 10);
 }
@@ -31,7 +52,10 @@ function startShotClockTime() {
     shotClockTimeInterval = setInterval(() => {
         shotClockTime.update((clockTime) => clockTime - 10);
 
+        // stop all clocks and reset shot clock if shot clock violation
         if (get(shotClockTime) <= 0) {
+            // todo: play shot clock violation buzzer
+
             stopClockTime();
             resetShotClock();
         }
@@ -125,4 +149,4 @@ function subtractSecondFromShotClock() {
     shotClockTime.update((clockTime) => clockTime - 1000 < 0 ? 0 : clockTime - 1000);
 }
 
-export { DEFAULT_GAME_INTERVAL_CLOCK_TIME, DEFAULT_SHOT_CLOCK_TIME, gameClockTime, shotClockTime, breakClockTime, isGameClockRunning, isBreakClockRunning, startClockTime, startTimeoutClockTime, stopClockTime, resetGameClock, resetShotClock, addMinuteToGameClock, subtractMinuteFromGameClock, addSecondToGameClock, subtractSecondFromGameClock, addSecondToShotClock, subtractSecondFromShotClock };
+export { DEFAULT_GAME_INTERVAL_CLOCK_TIME, DEFAULT_SHOT_CLOCK_TIME, currentInterval, totalIntervals, gameClockTime, shotClockTime, breakClockTime, isGameClockRunning, isBreakClockRunning, isGameIntervalBuzzerOn, startClockTime, startTimeoutClockTime, stopClockTime, resetGameClock, resetShotClock, addMinuteToGameClock, subtractMinuteFromGameClock, addSecondToGameClock, subtractSecondFromGameClock, addSecondToShotClock, subtractSecondFromShotClock };

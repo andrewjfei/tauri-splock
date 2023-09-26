@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { DEFAULT_SHOT_CLOCK_TIME, addSecondToShotClock, isGameClockRunning, resetShotClock, shotClockTime, subtractSecondFromShotClock } from "../stores/ClockStore";
+    import { DEFAULT_SHOT_CLOCK_TIME, addSecondToShotClock, isGameClockRunning, isGameIntervalBuzzerOn, resetShotClock, shotClockTime, subtractSecondFromShotClock } from "../stores/ClockStore";
     import Button from "./Button.svelte";
     import Label from "./Label.svelte";
     import SecondaryClockDisplay from "./SecondaryClockDisplay.svelte";
@@ -17,18 +17,18 @@
     <div class="row-span-1 flex gap-x-4">
         <Button 
             class="flex-1"
-            type={$isGameClockRunning || $shotClockTime <= 0 ? "disabled" : "default"} 
+            type={$isGameClockRunning || $isGameIntervalBuzzerOn || $shotClockTime <= 0 ? "disabled" : "default"} 
             size="lg" 
             text="- Sec" 
             on:click={subtractSecondFromShotClock}
         />
         <Button 
             class="flex-1"
-            type={$isGameClockRunning || $shotClockTime >= DEFAULT_SHOT_CLOCK_TIME ? "disabled" : "default"}  
+            type={$isGameClockRunning || $isGameIntervalBuzzerOn || $shotClockTime >= DEFAULT_SHOT_CLOCK_TIME ? "disabled" : "default"}  
             size="lg" 
             text="+ Sec"
             on:click={addSecondToShotClock}
         />
     </div>
-    <Button class="row-span-1" size="lg" text="Reset" on:click={resetShotClock} />
+    <Button class="row-span-1" type={$isGameIntervalBuzzerOn ? "disabled" : "default"} size="lg" text="Reset" on:click={resetShotClock} />
 </div>

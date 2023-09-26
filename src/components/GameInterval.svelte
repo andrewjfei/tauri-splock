@@ -8,7 +8,7 @@
 
     export { className as class, currentInterval, totalIntervals };
 
-    function getGameIntervalText() {
+    function getGameIntervalText(currentInterval: number) {
         let nth: string | null;
         let intervalName: string;
 
@@ -47,6 +47,6 @@
 </script>
 
 <div class="flex flex-col justify-center gap-y-4 xl:gap-y-5 3xl:gap-y-6 {className}">
-    <Label size="2xl" text={getGameIntervalText()} />
+    <Label size="2xl" text={getGameIntervalText(currentInterval)} />
     <GameIntervalTracker currentInterval={currentInterval} totalIntervals={totalIntervals} />
 </div>
