@@ -1,4 +1,6 @@
 <script lang="ts">
+    import { decrementGameInterval, incrementGameInterval } from "../stores/ClockStore";
+    import ArrowButton from "./ArrowButton.svelte";
     import GameIntervalTracker from "./GameIntervalTracker.svelte";
     import Label from "./Label.svelte";
 
@@ -47,6 +49,10 @@
 </script>
 
 <div class="flex flex-col justify-center gap-y-4 xl:gap-y-5 3xl:gap-y-6 {className}">
-    <Label size="2xl" text={getGameIntervalText(currentInterval)} />
+    <div class="px-2 lg:px-4 xl:px-8 2xl:px-10 3xl:px-14 flex justify-between items-center">
+        <ArrowButton direction="left" type={currentInterval <= 1 ? "disabled" : "default"} on:click={decrementGameInterval} />
+        <Label size="2xl" text={getGameIntervalText(currentInterval)} />
+        <ArrowButton direction="right" type={currentInterval >= totalIntervals ? "disabled" : "default"} on:click={incrementGameInterval} />
+    </div>
     <GameIntervalTracker currentInterval={currentInterval} totalIntervals={totalIntervals} />
 </div>

@@ -5,7 +5,7 @@ const DEFAULT_SHOT_CLOCK_TIME: number = 24000;
 const DEFAULT_TIMEOUT_CLOCK_TIME: number = 30000;
 
 const currentInterval: Writable<number> = writable(1);
-const totalIntervals: Writable<number> = writable(2);
+const totalIntervals: Writable<number> = writable(4);
 
 // all clock time values are in milliseconds
 const gameClockTime: Writable<number> = writable(DEFAULT_GAME_INTERVAL_CLOCK_TIME);
@@ -24,6 +24,12 @@ let breakClockTimeInterval: number;
 function incrementGameInterval() {
     if (get(currentInterval) < get(totalIntervals)) {
         currentInterval.update((interval) => interval + 1);
+    }
+}
+
+function decrementGameInterval() {
+    if (get(currentInterval) > 1) {
+        currentInterval.update((interval) => interval - 1);
     }
 }
 
@@ -149,4 +155,4 @@ function subtractSecondFromShotClock() {
     shotClockTime.update((clockTime) => clockTime - 1000 < 0 ? 0 : clockTime - 1000);
 }
 
-export { DEFAULT_GAME_INTERVAL_CLOCK_TIME, DEFAULT_SHOT_CLOCK_TIME, currentInterval, totalIntervals, gameClockTime, shotClockTime, breakClockTime, isGameClockRunning, isBreakClockRunning, isGameIntervalBuzzerOn, startClockTime, startTimeoutClockTime, stopClockTime, resetGameClock, resetShotClock, addMinuteToGameClock, subtractMinuteFromGameClock, addSecondToGameClock, subtractSecondFromGameClock, addSecondToShotClock, subtractSecondFromShotClock };
+export { DEFAULT_GAME_INTERVAL_CLOCK_TIME, DEFAULT_SHOT_CLOCK_TIME, currentInterval, totalIntervals, gameClockTime, shotClockTime, breakClockTime, isGameClockRunning, isBreakClockRunning, isGameIntervalBuzzerOn, incrementGameInterval, decrementGameInterval, startClockTime, startTimeoutClockTime, stopClockTime, resetGameClock, resetShotClock, addMinuteToGameClock, subtractMinuteFromGameClock, addSecondToGameClock, subtractSecondFromGameClock, addSecondToShotClock, subtractSecondFromShotClock };
